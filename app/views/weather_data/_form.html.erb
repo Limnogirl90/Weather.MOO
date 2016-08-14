@@ -1,0 +1,21 @@
+<%= form_for(@weather_datum) do |f| %>
+  <% if @weather_datum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@weather_datum.errors.count, "error") %> prohibited this weather_datum from being saved:</h2>
+
+      <ul>
+      <% @weather_datum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :observation_date %><br>
+    <%= f.date_select :observation_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

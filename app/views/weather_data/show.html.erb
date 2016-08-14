@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Observation date:</strong>
+  <%= @weather_datum.observation_date %>
+</p>
+
+<%= link_to 'Edit', edit_weather_datum_path(@weather_datum) %> |
+<%= link_to 'Back', weather_data_path %>
