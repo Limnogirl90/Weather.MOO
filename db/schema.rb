@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160814201436) do
+ActiveRecord::Schema.define(version: 20160815042019) do
 
   create_table "weather_data", force: :cascade do |t|
     t.date     "observation_date"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160814201436) do
     t.integer  "weather_html_size"
     t.string   "weather_html_content_type"
     t.string   "weather_html_url"
+    t.binary   "csv_row"
   end
 
 end
