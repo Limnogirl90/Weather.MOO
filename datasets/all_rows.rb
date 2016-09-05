@@ -27,6 +27,10 @@ WeatherDatum.all.each do |w|
     w.save
   end
   csv_row = Marshal.load(w.csv_row)
+  csv_row.delete(:"Heating Degree Days")
+  unless csv_row.key?(:"Growing Degree Days")
+    csv_row[:"Growing Degree Days"] = "NA"
+  end
   rows << CSV::Row.new(csv_row.keys, csv_row.values)
 end
 puts "printing out a big old CSV"
