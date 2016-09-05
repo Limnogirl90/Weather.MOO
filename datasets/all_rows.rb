@@ -2,6 +2,7 @@ require 'csv'
 
 csv_table = nil
 rows = []
+header = nil
 WeatherDatum.all.each do |w|
   d = nil
   if w.csv_row.nil?
@@ -31,8 +32,14 @@ WeatherDatum.all.each do |w|
   unless csv_row.key?(:"Growing Degree Days")
     csv_row[:"Growing Degree Days"] = "NA"
   end
+  if header.nil?
+    header = csv_row.keys
+  end
   rows << CSV::Row.new(csv_row.keys, csv_row.values)
 end
-puts "printing out a big old CSV"
-csv_table = CSV::Table.new(rows)
+#STDERR.puts "printing out a big old CSV"
+csv_table = CSV::Table.new([])
+rows.each do |r|
+  csv_table << r.fields(*header)
+end
 puts csv_table
