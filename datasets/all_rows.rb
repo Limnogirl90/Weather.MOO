@@ -35,11 +35,11 @@ WeatherDatum.all.each do |w|
   if header.nil?
     header = csv_row.keys
   end
-  rows << CSV::Row.new(csv_row.keys, csv_row.values)
+  rows << csv_row
 end
 #STDERR.puts "printing out a big old CSV"
-csv_table = CSV::Table.new([])
-rows.each do |r|
-  csv_table << r.fields(*header)
+puts header.to_csv
+rows.each do |row|
+  puts header.map {|h| row[h]}.to_csv
 end
-puts csv_table
+#puts csv_table
