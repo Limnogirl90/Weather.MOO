@@ -24,9 +24,14 @@ WeatherDatum.all.each do |w|
     w.save
   end
   csv_row = Marshal.load(w.csv_row)
-  csv_row.delete(:"Heating Degree Days")
+  unless csv_row.key?(:"Heating Degree Days")
+    csv_row[:"Heating Degree Days"] = "NA"
+  end
   unless csv_row.key?(:"Growing Degree Days")
     csv_row[:"Growing Degree Days"] = "NA"
+  end
+  unless csv_row.key?(:"Cooling Degree Days")
+    csv_row[:"Cooling Degree Days"] = "NA"
   end
   if header.nil?
     header = csv_row.keys

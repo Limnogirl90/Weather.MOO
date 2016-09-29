@@ -44,7 +44,7 @@ class WeatherDatum < ActiveRecord::Base
     end
     t = rows.select do |r|
       label = r["\u00a0"]
-      ( label =~ /Mean Temperature|Max Temperature|Min Temperature|Growing Degree Days|Precipitation/ &&
+      ( label =~ /Mean Temperature|Max Temperature|Min Temperature|Cooling Degree Days|Heating Degree Days|Growing Degree Days|Precipitation/ &&
        (label==:Precipitation && r["Actual"].nil? ? false : true)
       )
     end
